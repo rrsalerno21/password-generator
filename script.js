@@ -6,7 +6,7 @@
 // DOM select the button with ID 'generate'
 var generateBtn = document.querySelector("#generate");
 
-// Create an object that contains all of the arrays we'd like to utilize for password characters
+// Create a global object that contains all of the arrays we'd like to utilize for password characters
 
 var charValues = {
 	lowercase: ['a', 'b', 'c', 'd', 'e' , 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -15,13 +15,16 @@ var charValues = {
 	specialChar: [` `, `!`, `"`, `#`, `$`, `%`, `&`, `'`, `(`, `)`, `*`, `+`, `,`, `-`, `.`, `/`, `:`, `;`, `<`, `=`, `>`, `?`, `@`, `[`, `]`, `^`, `_`, `{`, `|`, `}`, `~`]
 }
 
+// Variable for state of process
+var cancelled;
+
 // FUNCTIONS
 // ================================================
 
 
 // Function to confirm Password Parameters to add into array
 function getPossChar(lower, upper, num, spec) {
-	var possChar = []
+	var possChar = [];
 	if (lower) {
 		possChar = possChar.concat(charValues.lowercase);
 	}	
@@ -40,7 +43,7 @@ function getPossChar(lower, upper, num, spec) {
 
 // Function to prompt user and store results in a returned object
 var getInputs = function () {
-	var passLength, lowCase, upCase, nums, specials, inRange, atLeastOne, cancelled;
+	var passLength, lowCase, upCase, nums, specials, inRange, atLeastOne;
 
 	// * Use a while loop with a true/false flag to make sure the user selects a number within the correct range and at least one character parameter
 	inRange = false;
@@ -55,10 +58,11 @@ var getInputs = function () {
 		} else if (passLength === "") {
 			passLength = 10;
 			inRange = true;
+			cancelled = false;
 		}		
 		else if ((parseInt(passLength) >= 8) && (parseInt(passLength) <= 128)) {
 			inRange = true;
-			console.log(`Password length set to: ${passLength}`)
+			cancelled = false;
 		} else {
 			alert(`Sorry, that number is not within the range of 8 - 128.  Try again.`);
 		}
@@ -141,10 +145,14 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword();
+	var password = generatePassword();
     var passwordText = document.querySelector("#password");
 
-    passwordText.value = password;
+	if (cancelled) {
+		passwordText.value = '';
+	} else {
+		passwordText.value = password;
+	}
 
 }
 
