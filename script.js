@@ -9,6 +9,7 @@ var generateBtn = document.querySelector("#generate");
 // Create an object that contains all of the arrays we'd like to utilize for password characters
 
 var charValues = {
+	
 	lowercase: ['a', 'b', 'c', 'd', 'e' , 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
 
 	uppercase: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
@@ -23,7 +24,7 @@ var charValues = {
 
 
 // Function to confirm Password Parameters to add into array
-function confirmPassParameters(lower, upper, num, spec) {
+function getPossChar(lower, upper, num, spec) {
 	var possChar = []
 	if (lower) {
 		possChar = possChar.concat(charValues.lowercase);
@@ -48,12 +49,13 @@ var getInputs = function () {
 	// * Use a while loop with a true/false flag to make sure the user selects a number within the correct range
 	var inRange = false;
 	while (!inRange) {
-		passLength = prompt(`How many characters would you like your password to have? (Must pick a number between 8 and 128)`);
+		passLength = prompt(`How many characters would you like your password to have? (Must pick a number between 8 and 128.  Our default length is 10)`);
 		if ((parseInt(passLength) >= 8) && (parseInt(passLength) <= 128)) {
 			inRange = true;
 			console.log(`Password length set to: ${passLength}`)
 		} else if (passLength === null) {
-			break;
+			passLength = 10;
+			inRange = true;
 		} else {
 			alert(`Sorry, that number is not within the range of 8 - 128.  Try again.`);
 
@@ -98,24 +100,29 @@ var getInputs = function () {
 // Generate password function
 function generatePassword() {
 	var pass = [];
+	var inputs, possCharArray, ranNum;
 	
 	// 1. Prompt/confirm the user for password parameters and get inputs
-	var inputs = getInputs();
+	inputs = getInputs();
 	console.log(`Successfully brought inputs into local scope: `, inputs);
 
 	// 2. If confirms are true, then add their respective arrays into possChar array as individual elements
-	confirmPassParameters(inputs.lowCase, inputs.upCase, inputs.nums, inputs.specials);
+	possCharArray = getPossChar(inputs.lowCase, inputs.upCase, inputs.nums, inputs.specials);
 
 
 	// 3. Run a for loop to iterate over the length of the password
-	//for (var i = 1; i <= inputs.passLength; i++) {
+	for (var i = 1; i <= inputs.passLength; i++) {
 
 		//4. Generate a random number as the index to grab the element from the array
+		ranNum = Math.floor(Math.random() * possCharArray.length);
+		console.log(ranNum);
 
+		pass.push(possCharArray[ranNum]);
+		console.log(pass);
 
 		//5.  Push that element into the pass array
 
-	//}
+	}
 
 	
 	//6. Returned the joined array as a string
