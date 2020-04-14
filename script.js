@@ -69,23 +69,14 @@ var getInputs = function () {
 		}
 	}
 
-	// Create an object to store all of our prompts and then return the answer
-	var inputs = {
+	// return an object that stores all of our prompts
+	return {
 		passLength: parseInt(passLength),
 		lowCase: lowCase,
 		upCase: upCase,
 		nums: nums,
 		specials: specials,
 		cancelled: cancelled
-	}
-
-	return {
-		passLength: inputs.passLength,
-		lowCase: inputs.lowCase,
-		upCase:  inputs.upCase,
-		nums: inputs.nums,
-		specials: inputs.specials,
-		cancelled: inputs.cancelled
 	}
 }
 
@@ -104,7 +95,7 @@ function getPossChar(lower, upper, num, spec) {
 	if (spec) {
 		possChar = possChar.concat(charValues.specialChar);
 	}	
-	console.log(`Array of possible characters: `, possChar);
+
 	return possChar;
 }
 
@@ -132,7 +123,7 @@ function generatePassword() {
 			//4. Generate a random number as the index to grab the element from the array
 			ranNum = Math.floor(Math.random() * possCharArray.length);
 	
-			//5.  Push that element into the pass array
+			//5. Push that element into the pass array
 			pass.push(possCharArray[ranNum]);
 		}
 	
