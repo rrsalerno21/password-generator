@@ -1,12 +1,10 @@
-
-
 // VARIABLES
 // ============================================
 
 // DOM select the button with ID 'generate'
 var generateBtn = document.querySelector("#generate");
 
-// Create a global object that contains all of the arrays we'd like to utilize for password characters
+// A global object that contains all of the arrays we'd like to utilize for password characters
 
 var charValues = {
 	lowercase: ['a', 'b', 'c', 'd', 'e' , 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
@@ -18,38 +16,21 @@ var charValues = {
 // Variable for state of process
 var cancelled;
 
+
 // FUNCTIONS
 // ================================================
 
 
-// Function to confirm Password Parameters to add into array
-function getPossChar(lower, upper, num, spec) {
-	var possChar = [];
-	if (lower) {
-		possChar = possChar.concat(charValues.lowercase);
-	}	
-	if (upper) {
-		possChar = possChar.concat(charValues.uppercase);
-	}	
-	if (num) {
-		possChar = possChar.concat(charValues.numeric);
-	}	
-	if (spec) {
-		possChar = possChar.concat(charValues.specialChar);
-	}	
-	console.log(`Array of possible characters: `, possChar);
-	return possChar;
-}
-
-// Function to prompt user and store results in a returned object
+// Function to prompt user for password length and parameters, and then store results in a returned object to use in getPossChar function
 var getInputs = function () {
+	// Create variables
 	var passLength, lowCase, upCase, nums, specials, inRange, atLeastOne;
 
-	// * Use a while loop with a true/false flag to make sure the user selects a number within the correct range and at least one character parameter
+	// * Use a while loop with a true/false flag to make sure the user selects a number within the correct range
 	inRange = false;
 	while (!inRange) {
 		// Password Length Prompt
-		passLength = prompt(`How many characters would you like your password to have? (Must pick a number between 8 and 128.  Our default length is 10.  Hit cancel to terminate password generation.)`);
+		passLength = prompt(`How many characters would you like your password to have? (Must pick a number between 8 and 128.  The default length is 10.  Hit cancel to terminate password generation.)`);
 		
 		// Input cases
 		if (passLength === null) {
@@ -108,14 +89,35 @@ var getInputs = function () {
 	}
 }
 
+// Function that confirms Password Parameters to add into an array and returns that array of possible password characters
+function getPossChar(lower, upper, num, spec) {
+	var possChar = [];
+	if (lower) {
+		possChar = possChar.concat(charValues.lowercase);
+	}	
+	if (upper) {
+		possChar = possChar.concat(charValues.uppercase);
+	}	
+	if (num) {
+		possChar = possChar.concat(charValues.numeric);
+	}	
+	if (spec) {
+		possChar = possChar.concat(charValues.specialChar);
+	}	
+	console.log(`Array of possible characters: `, possChar);
+	return possChar;
+}
 
-// Generate password function
+
+// Generate password function that gets inputs, creates an array of possible password characters, and then returns a randomized password string
 function generatePassword() {
 	var pass = [];
 	var inputs, possCharArray, ranNum;
 	
 	// 1. Prompt/confirm the user for password parameters and get inputs
 	inputs = getInputs();
+
+	// Check if user cancelled
 	if (inputs.cancelled) {
 		console.log(`User cancelled generate password.`);
 	} else {
@@ -123,7 +125,6 @@ function generatePassword() {
 	
 		// 2. If confirms are true, then add their respective arrays into possChar array as individual elements
 		possCharArray = getPossChar(inputs.lowCase, inputs.upCase, inputs.nums, inputs.specials);
-	
 	
 		// 3. Run a for loop to iterate over the length of the password
 		for (var i = 1; i <= inputs.passLength; i++) {
@@ -134,8 +135,6 @@ function generatePassword() {
 			//5.  Push that element into the pass array
 			pass.push(possCharArray[ranNum]);
 		}
-	
-		console.log(`Password Array: `, pass);
 	
 		//6. Returned the joined array as a string
 		return pass.join("");
