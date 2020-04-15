@@ -14,6 +14,28 @@
       </header>
       <div class="card">
         <div class="card-header">
+          <h2>What would you like in your new password?</h2>
+        </div>
+        <div class="card-body">
+          <form id="param-form">
+            <label for="passLength">How long would you like your password to be?</label><br>
+            <input type="number" name="passLength" id="passLength" placeholder="Number between 8 - 128">
+            <br>
+            <br>
+
+            <input type="checkbox" id="lowercase" name="param1" checked="true" value="Lowercase">
+            <label for="param1"> Lowercase Letters</label><br>
+            <input type="checkbox" id="uppercase" name="param2" checked="true" value="Uppercase">
+            <label for="param2"> Uppercase Letters</label><br>
+            <input type="checkbox" id="numbers" name="param3" checked="true" value="Numbers">
+            <label for="param3"> Numbers</label><br>
+            <input type="checkbox" id="specials" name="param4" checked="true" value="Specials">
+            <label for="param4"> Special Characters</label>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
