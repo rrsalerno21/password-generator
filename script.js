@@ -101,49 +101,44 @@ function getPossChar(lower, upper, num, spec) {
 
 
 // Generate password function that gets inputs, creates an array of possible password characters, and then returns a randomized password string
-function generatePassword() {
-	var pass = [];
-	var inputs, possCharArray, ranNum;
+// function generatePassword() {
+// 	var pass = [];
+// 	var inputs, possCharArray, ranNum;
 	
-	// 1. Prompt/confirm the user for password parameters and get inputs
-	inputs = getInputs();
+// 	// 1. Prompt/confirm the user for password parameters and get inputs
+// 	inputs = getInputs();
 
-	// Check if user cancelled
-	if (inputs.cancelled) {
-		console.log(`User cancelled generate password.`);
-	} else {
-		console.log(`Successfully brought inputs into local scope of generatePassword: `, inputs);
+// 	// Check if user cancelled
+// 	if (inputs.cancelled) {
+// 		console.log(`User cancelled generate password.`);
+// 	} else {
+// 		console.log(`Successfully brought inputs into local scope of generatePassword: `, inputs);
 	
-		// 2. If confirms are true, then add their respective arrays into possChar array as individual elements
-		possCharArray = getPossChar(inputs.lowCase, inputs.upCase, inputs.nums, inputs.specials);
+// 		// 2. If confirms are true, then add their respective arrays into possChar array as individual elements
+// 		possCharArray = getPossChar(inputs.lowCase, inputs.upCase, inputs.nums, inputs.specials);
 	
-		// 3. Run a for loop to iterate over the length of the password
-		for (var i = 1; i <= inputs.passLength; i++) {
+// 		// 3. Run a for loop to iterate over the length of the password
+// 		for (var i = 1; i <= inputs.passLength; i++) {
 	
-			//4. Generate a random number as the index to grab the element from the array
-			ranNum = Math.floor(Math.random() * possCharArray.length);
+// 			//4. Generate a random number as the index to grab the element from the array
+// 			ranNum = Math.floor(Math.random() * possCharArray.length);
 	
-			//5. Push that element into the pass array
-			pass.push(possCharArray[ranNum]);
-		}
+// 			//5. Push that element into the pass array
+// 			pass.push(possCharArray[ranNum]);
+// 		}
 	
-		//6. Returned the joined array as a string
-		return pass.join("");
-	}
-}
+// 		//6. Returned the joined array as a string
+// 		return pass.join("");
+// 	}
+// }
 
 
 // Write password to the #password input
 function writePassword() {
-	//var password = generatePassword();
-	getFormInputs();
+	var password = generatePassword();
     var passwordText = document.querySelector("#password");
 
-	if (cancelled) {
-		passwordText.value = '';
-	} else {
 		passwordText.value = password;
-	}
 
 }
 
@@ -182,19 +177,41 @@ function createPassArray(lowerCase, upperCase, numbers, specials) {
 	var passArray = [];
 
 	if (lowerCase) {
-		passArray.concat(charValues.lowercase);
+		passArray = passArray.concat(charValues.lowercase);
 	}
 	if (upperCase) {
-		passArray.concat(charValues.uppercase);
+		passArray = passArray.concat(charValues.uppercase);
 	}
 	if (numbers) {
-		passArray.concat(charValues.numeric);
+		passArray = passArray.concat(charValues.numeric);
 	}
 	if (specials) {
-		passArray.concat(charValues.specialChar);
+		passArray = passArray.concat(charValues.specialChar);
 	}
-
+	console.log(passArray)
 	return passArray
+}
+
+function generatePassword() {
+	var inputs, passArray;
+	var pass = [];
+
+	// 1. Get password parameters from form
+	inputs = getFormInputs();
+
+	// 2. Create password array with those parameters
+	passArray = createPassArray(inputs.lowerCase, inputs.upperCase, inputs.numbers, inputs.specials);
+
+	// 3. Use a for loop to iterate over passLength to create a new random password
+	while (pass.length < inputs.passLength) {
+		var ranNum = Math.floor(Math.random() * passArray.length);
+
+		pass.push(passArray[ranNum]);
+	};
+
+	// 4. Join the pass array and return
+	console.log(pass);
+	return pass.join("");
 
 }
 
