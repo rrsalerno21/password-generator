@@ -168,6 +168,35 @@ function getFormInputs() {
 	numbers = document.getElementById("numbers").checked;
 	specials = document.getElementById("specials").checked;
 	console.log('Captured Inputs: ', passLength, lowerCase, upperCase, numbers, specials);
+
+	return {
+		passLength: passLength,
+		lowerCase: lowerCase,
+		upperCase: upperCase,
+		numbers: numbers,
+		specials: specials
+	}
 }
+
+function createPassArray(lowerCase, upperCase, numbers, specials) {
+	var passArray = [];
+
+	if (lowerCase) {
+		passArray.concat(charValues.lowercase);
+	}
+	if (upperCase) {
+		passArray.concat(charValues.uppercase);
+	}
+	if (numbers) {
+		passArray.concat(charValues.numeric);
+	}
+	if (specials) {
+		passArray.concat(charValues.specialChar);
+	}
+
+	return passArray
+
+}
+
 // Get the value of the input field with id="numb"
 //x = document.getElementById("numb").value
