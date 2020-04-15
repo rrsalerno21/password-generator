@@ -135,7 +135,8 @@ function generatePassword() {
 
 // Write password to the #password input
 function writePassword() {
-	var password = generatePassword();
+	//var password = generatePassword();
+	getFormInputs();
     var passwordText = document.querySelector("#password");
 
 	if (cancelled) {
@@ -153,3 +154,20 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+// NEW CODE
+
+function getFormInputs() {
+	var passLength, lowerCase, upperCase, numbers, specials;
+
+	passLength = document.getElementById("passLength").value;
+	lowerCase = document.getElementById("lowercase").checked;
+	upperCase = document.getElementById("uppercase").checked;
+	numbers = document.getElementById("numbers").checked;
+	specials = document.getElementById("specials").checked;
+	console.log('Captured Inputs: ', passLength, lowerCase, upperCase, numbers, specials);
+}
+// Get the value of the input field with id="numb"
+//x = document.getElementById("numb").value
