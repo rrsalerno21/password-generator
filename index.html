@@ -14,15 +14,14 @@
       </header>
       <div class="card">
         <div class="card-header">
-          <h2>What would you like in your new password?</h2>
+          <h2 class="text-align-center">Set Your Password Parameters</h2>
         </div>
         <div class="card-body">
           <form id="param-form">
-            <label for="passLength">How long would you like your password to be?</label><br>
+            <p class="param-title">1.) How long would you like your password to be?</p>
             <input type="number" name="passLength" id="passLength" placeholder="Number between 8 - 128">
             <br>
-            <br>
-
+            <p class="param-title">2.) Select which characters would you like to use?</p>
             <input type="checkbox" id="lowercase" name="param1" checked="true" value="Lowercase">
             <label for="param1"> Lowercase Letters</label><br>
             <input type="checkbox" id="uppercase" name="param2" checked="true" value="Uppercase">
@@ -32,22 +31,16 @@
             <input type="checkbox" id="specials" name="param4" checked="true" value="Specials">
             <label for="param4"> Special Characters</label>
           </form>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
+          <h2 class="text-align-center">Generated Password</h2>
           <textarea
             readonly
             id="password"
             placeholder="Your Secure Password"
             aria-label="Generated Password"
           ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
+          <div class="card-footer">
+            <button id="generate" class="btn">Generate Password</button>
+          </div>
         </div>
       </div>
     </div>
