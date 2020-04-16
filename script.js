@@ -3,6 +3,7 @@
 
 // DOM select the button with ID 'generate'
 var generateBtn = document.querySelector("#generate");
+var passLengthEnter = document.getElementById('passLength');
 
 // A global object that contains all of the arrays we'd like to utilize for password characters
 
@@ -107,5 +108,13 @@ function writePassword() {
 // EXECUTE CODE
 // ==================================
 
-// Add event listener to generate button
+// Add event listeners for click and enter to generate button
+// on click
 generateBtn.addEventListener("click", writePassword);
+
+// on enter of passlength input
+passLengthEnter.addEventListener('keyup', function(event) {
+	if (event.keyCode === 13) {
+		generateBtn.click();
+	} 
+});
