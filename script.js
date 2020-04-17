@@ -22,7 +22,7 @@ var charValues = {
 
 // Function to get the users inputs from the form
 function getFormInputs() {
-	var passLength, defaultText, lowerCase, upperCase, numbers, specials;
+	var passLength, lowerCase, upperCase, numbers, specials;
 
 	// get password length input
 	passLength = document.getElementById("passLength").value;
@@ -126,6 +126,7 @@ modalGenerateBtn.addEventListener("click", function(event) {
 modalChangeBtn.addEventListener("click", function(event) {
 	modal.style.display = "none";	
 	passLengthEnter.focus();
+	passLengthEnter.value = "";
 });
 
 // on enter of passlength input
