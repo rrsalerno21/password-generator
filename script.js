@@ -26,13 +26,10 @@ function getFormInputs() {
 
 	// get password length input
 	passLength = document.getElementById("passLength").value;
-	defaultText = document.getElementById("default-text");
 
 	// password length form validation
 	if (passLength === "") {
 		passLength = 12;
-		// toggle the UI to show the length defaulted to 12 characters
-		defaultText.classList.toggle('my-toggle');
 	} else if ((passLength < 8)  || (passLength > 128)) {
 		alert('Please select a password length between 8 - 128.')
 		return false;

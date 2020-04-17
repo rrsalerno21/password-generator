@@ -142,11 +142,6 @@ button[disabled] {
   display:none;
 }
 
-#default-text {
-  font-size: 14px;
-  color: #888888;
-}
-
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
