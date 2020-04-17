@@ -33,11 +33,8 @@ function getFormInputs() {
 	} else if ((passLength < 8)  || (passLength > 128)) {
 		alert('Please select a password length between 8 - 128.')
 		return false;
-	} else {
-		if (defaultText.classList) {
-			defaultText.classList.toggle('my-toggle');
-		}
-	}
+	} 
+	
 	
 	// get password parameter inputs
 	lowerCase = document.getElementById("lowercase").checked;
@@ -50,8 +47,6 @@ function getFormInputs() {
 		alert('Please select at least one password parameter')
 		return false;
 	}
-	console.log('Captured Inputs: ', passLength, lowerCase, upperCase, numbers, specials);
-
 	// return object to be used in different scope
 	return {
 		passLength: passLength,
@@ -119,8 +114,9 @@ function writePassword() {
 // Add event listeners for click and enter to generate button
 // on click
 generateBtn.addEventListener("click", function(event) {
-	modal.style.display = "block";
 	writePassword();
+	modal.style.display = "block";
+
 });
 
 modalGenerateBtn.addEventListener("click", function(event) {
@@ -136,6 +132,7 @@ modalChangeBtn.addEventListener("click", function(event) {
 passLengthEnter.addEventListener('keyup', function(event) {
 	if (event.keyCode === 13) {
 		generateBtn.click();
+		modal.style.display = "block";
 	} 
 });
 
