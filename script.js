@@ -20,15 +20,24 @@ var charValues = {
 
 // Function to get the users inputs from the form
 function getFormInputs() {
-	var passLength, lowerCase, upperCase, numbers, specials;
+	var passLength, defaultText, lowerCase, upperCase, numbers, specials;
 
 	// get password length input
 	passLength = document.getElementById("passLength").value;
+	defaultText = document.getElementById("default-text");
 
 	// password length form validation
-	if (passLength === "" || (passLength < 8)  || (passLength > 128)) {
+	if (passLength === "") {
+		passLength = 12;
+		// toggle the UI to show the length defaulted to 12 characters
+		defaultText.classList.toggle('my-toggle');
+	} else if ((passLength < 8)  || (passLength > 128)) {
 		alert('Please select a password length between 8 - 128.')
 		return false;
+	} else {
+		if (defaultText.classList) {
+			defaultText.classList.toggle('my-toggle');
+		}
 	}
 	
 	// get password parameter inputs
