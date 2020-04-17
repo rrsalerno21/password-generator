@@ -3,6 +3,8 @@
 
 // DOM select the button with ID 'generate'
 var generateBtn = document.querySelector("#generate");
+var modalGenerateBtn = document.querySelector("#modal-generate");
+var modalChangeBtn = document.querySelector("#modal-change-button");
 var passLengthEnter = document.getElementById('passLength');
 
 // A global object that contains all of the arrays we'd like to utilize for password characters
@@ -119,7 +121,19 @@ function writePassword() {
 
 // Add event listeners for click and enter to generate button
 // on click
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", function(event) {
+	modal.style.display = "block";
+	writePassword();
+});
+
+modalGenerateBtn.addEventListener("click", function(event) {
+	writePassword();
+});
+
+modalChangeBtn.addEventListener("click", function(event) {
+	modal.style.display = "none";	
+	passLengthEnter.focus();
+});
 
 // on enter of passlength input
 passLengthEnter.addEventListener('keyup', function(event) {
@@ -127,3 +141,27 @@ passLengthEnter.addEventListener('keyup', function(event) {
 		generateBtn.click();
 	} 
 });
+
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

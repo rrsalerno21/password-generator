@@ -32,18 +32,38 @@
             <input type="checkbox" id="specials" name="param4" checked="true" value="Specials">
             <label for="param4"> Special Characters</label>
           </div>
-          <h2 class="text-align-center">Generated Password</h2>
+          
+          <div class="card-footer">
+            <button id="generate" class="btn">Generate Password</button>
+          </div>
+        </div>
+      </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="text-align-center">Generated Password</h2>
           <textarea
             readonly
             id="password"
             placeholder="Your Secure Password"
             aria-label="Generated Password"
           ></textarea>
-          <div class="card-footer">
-            <button id="generate" class="btn">Generate Password</button>
+          <div id="modal-buttons-container">
+            <div class="col">
+              <button id="modal-generate" class="modal-btn">Run It Again</button>
+            </div>
+            <div class="col">
+              <button class="modal-btn-outline" id="modal-change-button">Change Parameters</button>
+            </div>
           </div>
-        </div>
       </div>
+
+    </div>
+
     </div>
     <script src="script.js"></script>
   </body>

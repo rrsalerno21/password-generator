@@ -56,6 +56,7 @@ header {
 
 .card-footer {
   text-align: center;
+
 }
 
 .card-footer::before {
@@ -64,6 +65,7 @@ header {
   width: 100%;
   background: #e7e9eb;
   height: 2px;
+  margin-top: 10px;
 }
 
 .card-footer::after {
@@ -133,6 +135,7 @@ button[disabled] {
 #passLength {
   height: 30px;
   font-size: 16px;
+  margin-top: 5px;
 }
 
 .my-toggle {
@@ -144,20 +147,87 @@ button[disabled] {
   color: #888888;
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+#modal-buttons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-btn {
+  border: none;
+  background-color: hsl(360, 91%, 36%);
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(0, 0%, 100%);
+  display: inline-block;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px 16px 16px 20px;
+  padding: 14px 34px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.modal-btn-outline {
+  border: 1px solid hsl(360, 91%, 36%);
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
+    0px;
+  color: hsl(360, 91%, 36%);
+  display: inline-block;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px 16px 16px 20px;
+  padding: 14px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @media (max-width: 690px) {
-  .btn {
+  .btn, .modal-btn, .modal-btn-outline {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
   }
-
-  #password {
-    font-size: 1rem;
-  }
 }
 
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
-}
